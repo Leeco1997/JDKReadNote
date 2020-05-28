@@ -1,5 +1,10 @@
 package lang;
 
+/**
+ * @author liqiao
+ * @date 2020/4/29
+ */
+
 public class ThreadTest {
     public static void main(String[] args) {
         ObjectTest objectTest = new ObjectTest();
@@ -32,7 +37,5 @@ public class ThreadTest {
             }
         };
         thread2.start();
-
-
     }
 }
