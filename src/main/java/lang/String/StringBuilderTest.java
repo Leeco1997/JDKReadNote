@@ -7,5 +7,13 @@ package lang.String;
  */
 
 public class StringBuilderTest {
+    public static void main(String[] args) {
+        StringBuilder stringBuilder = new StringBuilder("a");
+        stringBuilder.append(1);
+        stringBuilder.append(2.3);
+        stringBuilder.append("abc");
+        System.out.println(stringBuilder);
+
+    }
 
 }

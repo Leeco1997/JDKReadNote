@@ -1,6 +1,6 @@
 package lang;
 
-
+import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/4/25
  * @description 关于Object类中几个方法。
  */
-
 
 public class ObjectTest {
     public static void main(String[] args) {
@@ -57,11 +56,18 @@ public class ObjectTest {
 
     @Override
     protected void finalize() throws Throwable {
-        try{
+        try {
             System.out.println("finalize success");
-        }
-        finally {
+        } finally {
             super.finalize();
         }
+    }
+
+    @Test
+    public void testWaitNotify() throws InterruptedException {
+        Object obj = new Object();
+        //java.lang.IllegalMonitorStateException:current thread not owner
+        obj.wait();
+        obj.notify();
     }
 }

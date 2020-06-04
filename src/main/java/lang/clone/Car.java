@@ -9,7 +9,23 @@ import lombok.Data;
  */
 
 @Data
-public class Car {
+public class Car implements Cloneable{
     private int price;
     private String color;
+
+
+    public Car(int price, String color) {
+        this.price = price;
+        this.color = color;
+    }
+
+    /**
+     * 只有深拷贝才需要对每一层内部对象重写clone
+     * @return
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

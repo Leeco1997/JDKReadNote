@@ -1,8 +1,6 @@
 package lang.clone;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author liqiao
@@ -15,14 +13,31 @@ public class Person implements Cloneable {
     private int age;
     private Car car;
 
-    @Override
-    protected Object clone() {
+    protected Person clone1() {
         try {
-            return super.clone();
+            //浅拷贝
+            return (Person) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
             return null;
         }
     }
 
+    protected Person clone2() {
+        try {
+            //深拷贝
+            Person person = (Person) super.clone();
+            person.car = (Car) car.clone();
+            return person;
+
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
