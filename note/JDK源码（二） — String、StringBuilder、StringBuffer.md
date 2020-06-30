@@ -29,7 +29,6 @@ public final class String
 
     private static final ObjectStreamField[] serialPersistentFields =
         new ObjectStreamField[0];
-
 ```
 
 #### 1.3 构造方法
