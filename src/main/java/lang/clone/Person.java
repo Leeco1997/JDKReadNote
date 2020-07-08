@@ -1,6 +1,9 @@
 package lang.clone;
 
 import lombok.Data;
+import lombok.Getter;
+
+import javax.swing.plaf.PanelUI;
 
 /**
  * @author liqiao
@@ -8,12 +11,22 @@ import lombok.Data;
  * @description 深拷贝和浅拷贝的区别
  */
 @Data
-public class Person implements Cloneable {
+@Getter
+public class Person implements Cloneable, Comparable<Person> {
     private String name;
     private int age;
     private Car car;
 
-    protected Person clone1() {
+    public Person() {
+
+    }
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person clone1() {
         try {
             //浅拷贝
             return (Person) super.clone();
@@ -23,7 +36,7 @@ public class Person implements Cloneable {
         }
     }
 
-    protected Person clone2() {
+    Person clone2() {
         try {
             //深拷贝
             Person person = (Person) super.clone();
@@ -39,5 +52,10 @@ public class Person implements Cloneable {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return Integer.compare(this.age, o.getAge());
     }
 }

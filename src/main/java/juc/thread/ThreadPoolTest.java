@@ -29,7 +29,7 @@ public class ThreadPoolTest {
      * ThreadPoolExecutor使用样例
      */
     @Test
-    private void ThreadPoolExecutoTest(){
+    private void threadPoolExecutoTest(){
         //推荐使用ThreadPoolExecutor
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE,
@@ -43,7 +43,6 @@ public class ThreadPoolTest {
             MyRunnable myRunnable = new MyRunnable(i);
             threadPoolExecutor.execute(myRunnable);
         }
-        //结束线程池 todo:一定要手动关闭线程池吗？
         threadPoolExecutor.shutdown();
         while (!threadPoolExecutor.isTerminated()) {
         }

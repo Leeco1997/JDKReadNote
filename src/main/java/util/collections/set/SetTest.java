@@ -1,6 +1,7 @@
 package util.collections.set;
 
-import java.util.Set;
+
+import java.util.HashSet;
 
 /**
  * @author liqiao
@@ -10,6 +11,6 @@ import java.util.Set;
 
 public class SetTest {
     public static void main(String[] args) {
-
+        HashSet<String> hashSet = new HashSet<>();
     }
 }
