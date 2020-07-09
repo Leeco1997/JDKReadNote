@@ -1,5 +1,9 @@
 package util.collections.queue.blockingQueue;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Stack;
 import java.util.concurrent.*;
 
 /**
@@ -9,11 +13,10 @@ import java.util.concurrent.*;
  */
 
 public class ArrayBlockingTest {
-    public static void main(String[] args) {
-        ArrayBlockingQueue<Integer> arrayBlockingQueue = new ArrayBlockingQueue<Integer>(5);
-        LinkedBlockingQueue<Integer> linkedBlockingQueue = new LinkedBlockingQueue<Integer>();
 
-        SynchronousQueue synchronousQueue = new SynchronousQueue();
-        ConcurrentLinkedQueue concurrentLinkedQueue = new ConcurrentLinkedQueue();
+
+    public static void main(String[] args) {
+
+
     }
 }

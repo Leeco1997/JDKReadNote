@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class IntegerTest {
     public static void main(String[] args) {
+        //Integer是线程安全的   private final int value;
         Integer a = 10;
         Integer b = 10;
         Integer c = 200;
