@@ -62,6 +62,7 @@ public class ArrayListTest {
         new Thread(new find(), "find3").start();
         new Thread(new find(), "find4").start();
         new Thread(new find(), "find5").start();
+        Collections.synchronizedList(copyOnWriteArrayList);
     }
 
     static class find implements Runnable {

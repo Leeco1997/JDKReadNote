@@ -99,7 +99,6 @@ public class ThreadTest {
             return 100;
         });
         Thread thread = new Thread(futureTask, "t3");
-        thread.run();
         thread.start();
         //阻塞获取
         log.info(String.valueOf(futureTask.get()));
@@ -162,7 +161,7 @@ public class ThreadTest {
             log.info("park……");
             LockSupport.park();
             log.info("parked");
-            //正常状态下的parjk  RUNNABLE,true
+            //正常状态下的park  RUNNABLE,true
             log.info("{},{}", Thread.currentThread().getState(), Thread.currentThread().isInterrupted());
 
             //interrupted()为true的时候，park()会失效

@@ -30,6 +30,7 @@ public class ThreadPoolTest {
      */
     @Test
     private void threadPoolExecutoTest(){
+
         //推荐使用ThreadPoolExecutor
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE,
@@ -51,6 +52,9 @@ public class ThreadPoolTest {
 
     private void fixedThreadPoolTest(){
         ExecutorService executor= Executors.newFixedThreadPool(5);
+
+
+
 
     }
 

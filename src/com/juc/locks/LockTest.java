@@ -1,5 +1,6 @@
 package com.juc.locks;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -9,16 +10,21 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockTest {
     public static void main(String[] args) {
-    ReentrantLock reentrantLock = new ReentrantLock(false);
-    //非公平锁的加锁过程
-    reentrantLock.tryLock();
+        ReentrantLock reentrantLock = new ReentrantLock(false);
 
-
+        //非公平锁的加锁过程
+        try {
+            reentrantLock.lock();
+        } finally {
+            reentrantLock.unlock();
+        }
+        reentrantLock.tryLock();
 
 
     }
+
     /****ReentrantLock的使用方式****/
-    public void test () throws InterruptedException {
+    public void test() throws InterruptedException {
         // 1.初始化选择公平锁、非公平锁
         ReentrantLock lock = new ReentrantLock(true);
         // 2.可用于代码块
@@ -26,7 +32,8 @@ public class LockTest {
         try {
             try {
                 // 3.支持多种加锁方式，比较灵活; 具有可重入特性
-                if(lock.tryLock(100, TimeUnit.MILLISECONDS)){ }
+                if (lock.tryLock(100, TimeUnit.MILLISECONDS)) {
+                }
             } finally {
                 // 4.手动释放锁
                 lock.unlock();
