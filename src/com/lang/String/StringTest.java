@@ -28,6 +28,15 @@ import java.util.Arrays;
  * 答：
  *
  * 5.如何设计一个类型是不可变的？
+ * 答： 1. final class
+ *     2. private void (){}
+ *     3. 保护性拷贝
+ *     4. 享元模式
+ *
+ *     在JDK中 Boolean，Byte，Short，Integer，Long，Character 等包装类提供了 valueOf 方法，
+ *     例如 Long 的 valueOf 会缓存 -128~127 之间的 Long 对象，在这个范围之间会重用对象，大于这个范围，才会新建 Long 对 象：
+ *
+ *
  *
  * 6. 为什么我们在使用HashMap的时候总是用String做key？
  * 答： 因为字符串是不可变的，当创建字符串时，它的它的hashcode被缓存下来，不需要再次计算
@@ -98,8 +107,17 @@ public class StringTest {
     public void testEquals() {
         String string = new String("123");
         String string1 = "123";
+        //输出结果：
+        //false
+        //1589683045
+        //1340328248
+        //true
+        //48690 48690
         System.out.println(string1 == string);
+        System.out.println(System.identityHashCode(string1));
+        System.out.println(System.identityHashCode(string));
         System.out.println(string1.equals(string));
+        System.out.println(string.hashCode() +" "+ string1.hashCode());
     }
 
     @Test

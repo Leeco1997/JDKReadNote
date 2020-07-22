@@ -1,6 +1,7 @@
 package com.lang;
 
 import org.junit.Test;
+import org.openjdk.jol.info.ClassLayout;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,6 +9,7 @@ import java.util.concurrent.TimeUnit;
  * @author liqiao
  * @date 2020/4/25
  * @description 关于Object类中几个方法。
+ * Object o = new Object();产生了几个对象？占用多少字节？
  */
 
 public class ObjectTest {
@@ -70,4 +72,34 @@ public class ObjectTest {
         obj.wait();
         obj.notify();
     }
+
+    @Test
+    public void test() {
+        Object o = new Object();
+        // OFFSET  SIZE   TYPE DESCRIPTION                               VALUE
+        //      0     4        (object header)                           01 00 00 00 (00000001 00000000 00000000 00000000) (1)
+        //      4     4        (object header)                           00 00 00 00 (00000000 00000000 00000000 00000000) (0)
+        //      8     4        (object header)                           e5 01 00 20 (11100101 00000001 00000000 00100000) (536871397)
+        //     12     4        (loss due to the next object alignment) [对齐为8的整数]
+        //Instance size: 16 bytes
+        //Space losses: 0 bytes internal + 4 bytes external = 4 bytes total
+        //markword 8字节 class pointer 4字节（默认开启压缩）  padding4字节
+        //如果不开启压缩  class pointer 8字节你
+        System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        synchronized (o) {
+            System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        }
+
+    }
+
+    @Test
+    public void test0(){
+            int i = 0;
+            for (int j = 0; j < 50; j++) {
+                i = i++;
+            }
+            System.out.println(i);
+        }
+
+
 }

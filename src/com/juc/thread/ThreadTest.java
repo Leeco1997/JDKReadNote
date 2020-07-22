@@ -3,10 +3,9 @@ package com.juc.thread;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
 /**
@@ -158,7 +157,6 @@ public class ThreadTest {
     @Test
     public void parkTest() {
         Thread t1 = new Thread(() -> {
-            log.info("park……");
             LockSupport.park();
             log.info("parked");
             //正常状态下的park  RUNNABLE,true
@@ -169,13 +167,6 @@ public class ThreadTest {
             log.info("park again");
         });
         t1.start();
-        try {
-            Thread.sleep(10);
-            //线程
-            t1.interrupt();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         t1.interrupt();
     }
@@ -187,4 +178,5 @@ public class ThreadTest {
     public void dosomething() {
 
     }
+
 }

@@ -654,7 +654,7 @@ private E get(Object[] a, int index) {
 
 
 
-#### 3. LinkedList
+#### 2.3 LinkedList
 
 ##### 基本结构
 
@@ -671,6 +671,63 @@ transient Node<E> first;
 transient Node<E> last;
 
 ```
+
+#### 2.4 CopyOnWriteArrayList
+
+读写分离
+
+```java
+    public E set(int index, E element) {
+        //修改的时候需要加锁
+        final ReentrantLock lock = this.lock;
+        lock.lock();
+        try {
+            Object[] elements = getArray();
+            E oldValue = get(elements, index);
+
+            if (oldValue != element) {
+                int len = elements.length;
+                Object[] newElements = Arrays.copyOf(elements, len);
+                newElements[index] = element;
+                setArray(newElements);
+            } else {
+                // Not quite a no-op; ensures volatile write semantics
+                setArray(elements);
+            }
+            return oldValue;
+        } finally {
+            lock.unlock();
+        }
+    }
+```
+
+```java
+   public E get(int index) {
+       //读取的时候不需要加锁
+        return get(getArray(), index);
+    }
+
+```
+
+#### 2.5 Collections.SynchronizedList
+
+对传入的`list`加锁
+
+```java
+       SynchronizedList(List<E> list) {
+            super(list);
+            this.list = list;
+        }
+
+	   SynchronizedCollection(Collection<E> c) {
+            this.c = Objects.requireNonNull(c);
+           //对list加锁
+            mutex = this;
+        }
+
+```
+
+
 
 ### 3. Map
 

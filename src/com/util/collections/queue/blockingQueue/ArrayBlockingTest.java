@@ -1,9 +1,5 @@
 package com.util.collections.queue.blockingQueue;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Stack;
 import java.util.concurrent.*;
 
 /**
@@ -22,6 +18,7 @@ public class ArrayBlockingTest {
         new Thread(new Producer()).start();
         new Thread(new Producer()).start();
         new Thread(new Consumer()).start();
+
     }
 
     static class Producer implements Runnable {
