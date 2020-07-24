@@ -1,8 +1,6 @@
-package com.juc.thread.threadpoll;
+package com.juc.thread.threadpool;
 
-import javafx.concurrent.Worker;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.internal.runners.statements.RunAfters;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

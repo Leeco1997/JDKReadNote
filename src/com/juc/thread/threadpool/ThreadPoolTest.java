@@ -1,4 +1,4 @@
-package com.juc.thread.threadpoll;
+package com.juc.thread.threadpool;
 
 
 import com.juc.thread.MyRunnable;
