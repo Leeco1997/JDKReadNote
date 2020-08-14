@@ -32,6 +32,7 @@ public class Park {
 
     private void print(String str, Thread next) {
         for (int i = 0; i < 10; i++) {
+            //Unsafe.park()
             LockSupport.park();
             System.out.println(str);
             LockSupport.unpark(next);
